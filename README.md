@@ -8,7 +8,7 @@
 </p>
 
 <p>Show get all registries API SERVER:</p>
-<p align="center"><img src="/public/captura1.png"></p>
+<p align="center"><img src="/public/capturas/captura1.png"></p>
 
 <p>Create or update registrer sending it to the API SERVER:</p>
-<p align="center"><img src="/public/captura2.png"></p>
+<p align="center"><img src="/public/capturas/captura2.png"></p>
