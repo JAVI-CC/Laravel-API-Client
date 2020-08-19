@@ -12,3 +12,6 @@
 
 <p>Create or update registrer sending it to the API SERVER:</p>
 <p align="center"><img src="/public/capturas/captura2.png"></p>
+
+<p>Application web responsive</p>
+<p align="center"><img src="/public/capturas/captura3.png"></p>
