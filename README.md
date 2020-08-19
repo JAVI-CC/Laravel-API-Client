@@ -6,3 +6,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
+
+<p>Show get all registries API SERVER:</p>
+<p align="center"><img src="/public/captura1.png"></p>
+
+<p>Create or update registrer sending it to the API SERVER:</p>
+<p align="center"><img src="/public/captura2.png"></p>
