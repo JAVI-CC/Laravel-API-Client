@@ -13,10 +13,16 @@ class Juego extends Model
 {
     protected $client;
 
+    protected $headers = [
+        'Content-Type' => 'application/json',
+        'api-key' => '$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu',
+    ];
+
     public function __construct()
     {
         $this->client = new Client([
             'base_uri' => 'https://laravelapijuegos.herokuapp.com',
+            'headers' => $this->headers,
             'defaults' => [
                 'exceptions' => false
             ]
@@ -72,7 +78,7 @@ class Juego extends Model
             $order = 'DESC';
         }
 
-        $response = $this->client->request('POST', '/api/juegos/filter/search', ['form_params' => ['search' => $request->input('search'), 'filter' => $filter, 'order' => $order,]]);
+        $response = $this->client->request('POST', '/api/juegos/filter/search', ['form_params' => ['search' => $request->input('search'), 'filter' => $filter, 'order' => $order]]);
         return json_decode($response->getBody()->getContents());
     }
 
