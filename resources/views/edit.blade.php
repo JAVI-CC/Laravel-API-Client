@@ -21,7 +21,7 @@
 
 @isset($error)<div class="alert alert-danger" role="alert" style="margin-top: 30px;"><i class="fas fa-times-circle icon-error"></i>Corrige los siguientes errores:<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
 
-<form method="POST" action="@isset($juego->id) {{ url("juegos/{$juego->id}") }} @endisset @isset($id) {{ url("juegos/{$id}") }}  @endisset">
+<form method="POST" action="@isset($juego->slug) {{ url("juegos/{$juego->slug}") }} @endisset @isset($slug) {{ url("juegos/{$slug}") }}  @endisset">
     @csrf
     @method('PUT')  
   <div class="form-group">

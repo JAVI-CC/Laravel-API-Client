@@ -40,9 +40,9 @@ class JuegoController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $juego = $this->juego->getid($id);
+        $juego = $this->juego->getslug($slug);
         $juegos = $this->getAll();
         if(isset($juego->error)) {
           $error = $juego->error;
@@ -52,9 +52,9 @@ class JuegoController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($slug, Request $request)
     {
-        $error = $this->juego->apiupdate($request, $id);
+        $error = $this->juego->apiupdate($request, $slug);
         $juegos = $this->getAll();
         if (isset($error->success)) {
             $success = $error->success;
@@ -64,13 +64,13 @@ class JuegoController extends Controller
             return view('index', compact('juegos', 'error'));
         } else {
             $values = $request->all();
-            return view('edit', compact('error', 'values', 'id'));
+            return view('edit', compact('error', 'values', 'slug'));
         }
     }
 
-    public function delete($id)
+    public function delete($slug)
     {
-        $juego = $this->juego->apidelete($id);
+        $juego = $this->juego->apidelete($slug);
         $juegos = $this->getAll();
         if (isset($juego->success)) {
             $success = $juego->success;

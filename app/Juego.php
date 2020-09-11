@@ -35,9 +35,9 @@ class Juego extends Model
         return json_decode($response->getBody()->getContents());
     }
 
-    public function getid($id)
+    public function getslug($slug)
     {
-        $response = $this->client->request('GET', '/api/juegos/' . $id);
+        $response = $this->client->request('GET', '/api/juegos/' . $slug);
         return json_decode($response->getBody()->getContents());
     }
 
@@ -47,15 +47,15 @@ class Juego extends Model
         return json_decode($response->getBody()->getContents());
     }
 
-    public function apiupdate($request, $id)
+    public function apiupdate($request, $slug)
     {
-        $response = $this->client->request('POST', '/api/juegos/' . $id, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);
+        $response = $this->client->request('POST', '/api/juegos/' . $slug, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);
         return json_decode($response->getBody()->getContents());
     }
 
-    public function apidelete($id)
+    public function apidelete($slug)
     {
-        $response = $this->client->request('GET', '/api/juegos/delete/' . $id);
+        $response = $this->client->request('GET', '/api/juegos/delete/' . $slug);
         return json_decode($response->getBody()->getContents());
     }
 

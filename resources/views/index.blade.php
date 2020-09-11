@@ -34,12 +34,12 @@
   <div class="card-footer">
     <small class="text-muted">{{ $juego->fecha }}</small>
     @auth
-    <a href="/juegos/delete/{{ $juego->id }}" onclick="return confirm('¿ Estas seguro de eliminar el juego {{ $juego->nombre }} ?')">
+    <a href="/juegos/delete/{{ $juego->slug }}" onclick="return confirm('¿ Estas seguro de eliminar el juego {{ $juego->nombre }} ?')">
       <div class="button_delete" style="float: right; margin-left: 15px;">
         <i class="fas fa-trash-alt"></i>
     </a>
   </div>
-  <a href="/juegos/{{ $juego->id }}">
+  <a href="/juegos/{{ $juego->slug }}">
     <div class="button_edit" style="float: right;">
       <i class="fas fa-edit"></i>
     </div>

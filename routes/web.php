@@ -22,11 +22,11 @@ Route::get('/juegos/add', function () {
 
 Route::post('/juegos/add', 'JuegoController@add')->name('add')->middleware('auth');
 
-Route::get('/juegos/{id}', 'JuegoController@show')->name('show')->middleware('auth');
+Route::get('/juegos/{slug}', 'JuegoController@show')->name('show')->middleware('auth');
 
-Route::put('/juegos/{id}', 'JuegoController@update')->name('update');
+Route::put('/juegos/{slug}', 'JuegoController@update')->name('update');
 
-Route::get('/juegos/delete/{id}', 'JuegoController@delete')->name('delete')->middleware('auth');
+Route::get('/juegos/delete/{slug}', 'JuegoController@delete')->name('delete')->middleware('auth');
 
 Route::post('/juegos/search', 'JuegoController@search')->name('search');
 
