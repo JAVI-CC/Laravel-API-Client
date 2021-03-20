@@ -176,6 +176,7 @@ i {
 }
 
 #btn-add {
+  z-index: 99999;
   position: fixed;
   right: 5%;
   bottom: 50px;
