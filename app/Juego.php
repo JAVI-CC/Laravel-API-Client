@@ -49,13 +49,13 @@ class Juego extends Model
 
     public function apiupdate($request, $slug)
     {
-        $response = $this->client->request('POST', '/api/juegos/' . $slug, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);
+        $response = $this->client->request('PUT', '/api/juegos/' . $slug, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);
         return json_decode($response->getBody()->getContents());
     }
 
     public function apidelete($slug)
     {
-        $response = $this->client->request('GET', '/api/juegos/delete/' . $slug);
+        $response = $this->client->request('DELETE', '/api/juegos/delete/' . $slug);
         return json_decode($response->getBody()->getContents());
     }
 
