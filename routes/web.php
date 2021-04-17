@@ -16,19 +16,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'JuegoController@index')->name('juegos.index');
 
-Route::get('/juegos/add', function () {
-    return view('add');
-})->name('add_form')->middleware('auth');
+Route::prefix('juegos/')->group(function () {
 
-Route::post('/juegos/add', 'JuegoController@add')->name('add')->middleware('auth');
+    Route::get('add', function () {
+        return view('add');
+    })->name('add_form')->middleware('auth');
 
-Route::get('/juegos/{slug}', 'JuegoController@show')->name('show')->middleware('auth');
+    Route::post('add', 'JuegoController@add')->name('add')->middleware('auth');
 
-Route::put('/juegos/{slug}', 'JuegoController@update')->name('update');
+    Route::get('{slug}', 'JuegoController@show')->name('show')->middleware('auth');
 
-Route::get('/juegos/delete/{slug}', 'JuegoController@delete')->name('delete')->middleware('auth');
+    Route::post('edit', 'JuegoController@update')->name('update');
 
-Route::post('/juegos/search', 'JuegoController@search')->name('search');
+    Route::get('delete/{slug}', 'JuegoController@delete')->name('delete')->middleware('auth');
+
+    Route::post('search', 'JuegoController@search')->name('search');
+});
 
 /* Auth */
 Auth::routes();

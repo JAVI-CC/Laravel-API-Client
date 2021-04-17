@@ -21,9 +21,9 @@
 
 @isset($error)<div class="alert alert-danger" role="alert" style="margin-top: 30px;"><i class="fas fa-times-circle icon-error"></i>Corrige los siguientes errores:<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
 
-<form method="POST" action="@isset($juego->slug) {{ url("juegos/{$juego->slug}") }} @endisset @isset($slug) {{ url("juegos/{$slug}") }}  @endisset">
+<form enctype="multipart/form-data" method="POST" action="{{ url("juegos/edit") }} ">
     @csrf
-    @method('PUT')  
+    @method('POST')  
   <div class="form-group">
     <label class="input-title">Titulo:</label>
     <input type="text" name="nombre" class="form-control input-titulo" value="@isset($juego->nombre){{$juego->nombre}}@endisset
@@ -51,6 +51,26 @@
     <div style="margin-top: 5px;"></div>
     <small style="color: red;">@isset($error->descripcion['0']) {{ $error->descripcion['0'] }} @endisset</small>
   </div>
+  <div class="form-group" style="margin-top: 15px; margin-bottom: 40px">
+    <div class="col col-md-5 col-xs-12" style="padding-left: 0px;">
+      <label class="input-title">Seleccionar imagen:</label>
+      <div class="">
+        <input type="file" name="imagen" class="input-file" style="width: 100%;">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon"><i class="fa fa-video-camera"></i></span>
+          <span class="input-group-btn">
+            <button class="upload-field btn btn-imagen" type="button" style="@isset($error->imagen['0']) border-color: red; @endisset"><i class="fas fa-image" style="font-size: 20px;"></i></button>
+          </span>
+          <input type="text" class="form-control input-upload" disabled placeholder="Ningún archivo seleccionado" style="@isset($error->imagen['0']) border-color: red; @endisset">
+        </div>
+      </div>
+      <div style="margin-top: 5px;"></div>
+      <small style="color: red;">@isset($error->imagen['0']) {{ $error->imagen['0'] }} @endisset</small>
+    </div>
+  </div>
+
+  <input type="hidden" name="slug" value="@isset($juego->slug){{$juego->slug}}@endisset @isset($values['slug']){{$values['slug']}}@endisset">
+
   <button type="submit" class="btn btn-warning" style="color: white;">Actualizar</button>
   <div style="margin-bottom: 30px;"></div>
 </form>

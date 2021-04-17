@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File; 
 
 
 class Juego extends Model
@@ -21,12 +22,25 @@ class Juego extends Model
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'https://laravelapijuegos.herokuapp.com',
+            //'base_uri' => 'https://laravelapijuegos.herokuapp.com',
+            'base_uri' => 'http://192.168.1.36:8000',
             'headers' => $this->headers,
             'defaults' => [
                 'exceptions' => false
             ]
         ]);
+    }
+
+    protected function upload_image($imagen){
+        if($imagen == null) return null;
+        
+        $filename = "background." .$imagen->getClientOriginalExtension();
+        $imagen->move(storage_path('/'), $filename);
+        return $filename;
+    }
+
+    protected function delete_image(){
+        File::delete(File::glob(storage_path('/background.*')));
     }
 
     public function getall()
@@ -43,13 +57,77 @@ class Juego extends Model
 
     public function apiadd($request)
     {
-        $response = $this->client->request('POST', '/api/juegos', ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);
+        $filename = $this->upload_image($request->file('imagen'));
+
+        $response = $this->client->request('POST', '/api/juegos', [ 'multipart' => [
+            [ 
+                'name' => 'nombre', 
+                'contents' => $request->input('nombre')
+            ],
+            [ 
+                'name' => 'desarrolladora', 
+                'contents' => $request->input('desarrolladora')
+            ],
+            [ 
+                'name' => 'fecha', 
+                'contents' => $request->input('fecha')
+            ],
+            [ 
+                'name' => 'descripcion', 
+                'contents' => $request->input('descripcion')
+            ],
+            [ 
+                'name' => 'imagen', 
+                'contents' =>  ($filename == null) ? '' : fopen(storage_path('/'.$filename), 'r')
+            ],
+            ]
+        ]
+    );
+
+        $this->delete_image();
         return json_decode($response->getBody()->getContents());
     }
 
-    public function apiupdate($request, $slug)
+    public function apiupdate($request)
     {
-        $response = $this->client->request('PUT', '/api/juegos/' . $slug, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);
+        $filename = $this->upload_image($request->file('imagen'));
+
+        $response = $this->client->request('POST', '/api/juegos/edit' , [
+            'headers' => [
+                '_method' => 'PUT'
+            ],
+            
+            'multipart' => [
+            [ 
+                'name' => 'nombre', 
+                'contents' => $request->input('nombre')
+            ],
+            [ 
+                'name' => 'desarrolladora', 
+                'contents' => $request->input('desarrolladora')
+            ],
+            [ 
+                'name' => 'fecha', 
+                'contents' => $request->input('fecha')
+            ],
+            [ 
+                'name' => 'descripcion', 
+                'contents' => $request->input('descripcion')
+            ],
+            [ 
+                'name' => 'imagen', 
+                'contents' => ($filename == null) ? '' : fopen(storage_path('/'.$filename), 'r')
+            ],
+            [ 
+                'name' => 'slug', 
+                'contents' => $request->input('slug')
+            ],
+            ]
+        ]
+                
+            );  
+
+        $this->delete_image();
         return json_decode($response->getBody()->getContents());
     }
 

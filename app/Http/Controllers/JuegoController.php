@@ -17,7 +17,7 @@ class JuegoController extends Controller
 
     public function getAll() {
         $juegos = $this->juego->getall();
-        $juegos = $this->juego->paginate($juegos, 6);
+        $juegos = $this->juego->paginate($juegos, 8);
         return $juegos;
     }
 
@@ -52,9 +52,9 @@ class JuegoController extends Controller
         }
     }
 
-    public function update($slug, Request $request)
+    public function update(Request $request)
     {
-        $error = $this->juego->apiupdate($request, $slug);
+        $error = $this->juego->apiupdate($request);
         $juegos = $this->getAll();
         if (isset($error->success)) {
             $success = $error->success;

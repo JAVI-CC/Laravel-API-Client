@@ -3,6 +3,49 @@ body {
   font-family: 'Fira Sans', sans-serif;
 }
 
+#index-1 {
+
+}
+
+#index-2 {
+  display: none;
+  text-align: center;
+}
+
+.div-index-2-images {
+  float: left; 
+  margin-bottom: 35px;
+}
+
+.div-form-search {
+  float: right; 
+  margin-bottom: 15px;
+}
+
+.index-2-juego-nombre {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.juegos-images {
+  cursor: pointer;
+}
+
+/* Opacity #2 */
+.hover01 figure {
+  display: inline-block;
+	background: #07ddff;
+}
+.hover01 figure img {
+	opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover01 figure:hover img {
+	opacity: .5;
+}
+
 .button_edit {
   background-color: #f6bb43;
   padding: 0px 4px 2px 6px;
@@ -73,6 +116,22 @@ body {
   font-weight: 200;
 }
 
+.input-file { visibility: hidden; position: absolute;}
+
+.btn-imagen {
+  background-color: #711aa7;
+  border-right: 0px!Important;
+  border-left: 1px solid #6c757d;
+  border-radius: 4px 0px 0px 4px;
+  padding-top: 10px;
+}
+
+.input-upload {
+  border-left: 0px!Important;
+  height: 42px;
+  margin-right: -15px;
+}
+
 .index-alert {
   display: table;
   width: 100%;
@@ -97,7 +156,7 @@ body {
 }
 
 .form-control {
-  background-color: #1a1a1a;
+  background-color: #1a1a1a!Important;
   color: #dee2e6;
   border: 1px solid #6c757d;
 }
@@ -136,6 +195,33 @@ i {
   color: #7e1e1e;
   margin-right: 5px;
   font-size: 16px;
+}
+
+.div-icons-bars-images {
+  float: left;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.div-icon-images {
+  float: right;
+  margin-top: -1px;
+}
+
+.icon-bars {
+  color: #ffc107;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.icon-images {
+  color: #FFFFFF;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.icon-bars-images {
+
 }
 
 .div-not-found {
@@ -208,6 +294,26 @@ label {
   margin-bottom: 1px!Important;
 }
 
+@media only screen and (max-width: 767px) {
+
+  .div-icons-bars-images {
+    margin-bottom: 15px;
+  }
+
+  .input-search {
+    width: 255px;
+  }
+
+}
+
+@media only screen and (max-width: 520px) {
+
+  .input-search {
+    width: 100%;
+  }
+
+}
+
 @media only screen and (max-width: 465px) {
 
   .div-input-buscar-mobile {
@@ -217,5 +323,18 @@ label {
   .div-select-ord-mobile {
     width: 42%;
   }
+
+}
+
+  @media only screen and (max-width: 410px) {
+
+    .div-input-des-fecha {
+      display: block;
+    }
+
+    .input-des {
+      margin-bottom: 15px;
+    }
+  
 
 }
