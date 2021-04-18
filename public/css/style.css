@@ -15,6 +15,7 @@ body {
 .div-index-2-images {
   float: left; 
   margin-bottom: 35px;
+  display: table;
 }
 
 .div-form-search {
@@ -186,13 +187,13 @@ i {
 }
 
 .icon-check {
-  color: #239454;
+  color: white;
   margin-right: 5px;
   font-size: 16px;
 }
 
 .icon-error {
-  color: #7e1e1e;
+  color: white;
   margin-right: 5px;
   font-size: 16px;
 }
@@ -200,6 +201,7 @@ i {
 .div-icons-bars-images {
   float: left;
   margin-top: 10px;
+  margin-bottom: 12px;
   margin-left: 5px;
 }
 
@@ -261,6 +263,97 @@ i {
   text-decoration: underline;
 }
 
+/*MODAL*/
+.modal-header {
+  background-color: rgb(37, 37, 37);
+  border-top-left-radius: calc(0.0rem - 0px);
+  border-top-right-radius: calc(0.0rem - 0px);
+  color: white;
+}
+
+.modal-header-subtitulo {
+  background-color: rgb(26, 26, 26);
+  border-top-left-radius: calc(0.0rem - 0px);
+  border-top-right-radius: calc(0.0rem - 0px);
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.modal-body-content {
+  background-color: rgb(26, 26, 26);
+  border-top-left-radius: calc(0.0rem - 0px);
+  border-top-right-radius: calc(0.0rem - 0px);
+  color: white;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.modal-footer-juego {
+  background-color: rgb(26, 26, 26);
+  padding-top: 0px;
+  border-top: 0px;
+}
+
+.modal-close {
+  color: white!Important;
+  opacity: 1!Important;
+}
+
+.JuegoModalNombre {
+  font-size: 18px;
+}
+
+.JuegoModalDesarrolladora {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.JuegoModalFecha {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.modal-button-warning {
+  padding-right: 8px;
+}
+
+.modal-icon-edit {
+  font-size: 15px;
+}
+
+.modal-button-danger {
+  margin-right: 15px;
+}
+
+.modal-icon-trash {
+  font-size: 15px;
+}
+/* Final Modal */
+
+.alert-danger {
+  color: white;
+  background-color: #db0000;
+  border-color: #db0000;
+}
+
+.alert-success {
+  color: white;
+  background-color: #00cc31;
+  border-color: #00cc31;
+}
+
+.close {
+  color: white!Important;
+  opacity: 1!Important;
+}
+
+.close:hover {
+  color: white!Important;
+  opacity: 1!Important;
+}
+
 #btn-add {
   z-index: 99999;
   position: fixed;
@@ -294,6 +387,22 @@ label {
   margin-bottom: 1px!Important;
 }
 
+@media only screen and (max-width: 1200px) {
+
+  .div-index-2-images {
+    max-width: 33%;
+  }
+
+}
+
+@media only screen and (max-width: 992px) {
+
+  .div-index-2-images {
+    max-width: 50%;
+  }
+
+}
+
 @media only screen and (max-width: 767px) {
 
   .div-icons-bars-images {
@@ -304,12 +413,39 @@ label {
     width: 255px;
   }
 
+  .div-form-search {
+    margin-right: -15px!Important;
+  }
+
+}
+
+
+@media only screen and (max-width: 575px) {
+
+  .div-form-search {
+    margin-right: 0px!Important;
+    margin-left: -10px;
+  }
+
 }
 
 @media only screen and (max-width: 520px) {
 
   .input-search {
     width: 100%;
+  }
+
+  .div-index-2-images {
+    max-width: 100%;
+  }
+
+  .div-icons-bars-images {
+    margin-left: 8px!Important;
+  }
+
+  .juegos-images {
+    width: 300px;
+    height: 400px;
   }
 
 }
@@ -324,6 +460,10 @@ label {
     width: 42%;
   }
 
+  .div-form-search {
+    margin-left: 0px;
+  }
+
 }
 
   @media only screen and (max-width: 410px) {
@@ -336,5 +476,4 @@ label {
       margin-bottom: 15px;
     }
   
-
 }

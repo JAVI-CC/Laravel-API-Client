@@ -60,7 +60,7 @@
   </div>
 
   <button type="submit" class="btn btn-success" style="color: white;">Añadir</button>
-  <div style="margin-bottom: 30px;"></div>
+  <div style="margin-bottom: 170px;"></div>
 </form>
 
 @endsection

@@ -62,7 +62,14 @@
     <div class="hover01 column">
       <div>
         <figure>
-          <img class="juegos-images" src="http://{{ $juego->imagen }}" width="240" height="320">
+          <div class="open-modal-img" data-toggle="modal" data-target="#ModalJuego">
+            <img class="juegos-images" src="http://{{ $juego->imagen }}" width="240" height="320">
+            <input type="hidden" class="modal-juego-nombre" value="{{ $juego->nombre }}">
+            <input type="hidden" class="modal-juego-desarrolladora" value="{{ $juego->desarrolladora }}">
+            <input type="hidden" class="modal-juego-fecha" value="{{ $juego->fecha }}">
+            <input type="hidden" class="modal-juego-descripcion" value="{{ $juego->descripcion }}">
+            <input type="hidden" class="modal-juego-slug" value="{{ $juego->slug }}">
+          </div>
         </figure>
       </div>
     </div>
@@ -70,6 +77,36 @@
   </div>
 
   @endforeach
+
+  <!-- Modal -->
+  <div class="modal fade" id="ModalJuego" tabindex="-1" role="dialog" aria-labelledby="JuegoModalNombre" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="border: 0px;">
+        <div class="modal-header">
+          <h5 class="modal-title JuegoModalNombre">Nombre</h5>
+          <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-header modal-header-subtitulo">
+          <h5 class="modal-title JuegoModalDesarrolladora">desarrolladora</h5>
+        </div>
+        <div class="modal-body modal-body-content">
+          <span class="modal-fecha JuegoModalFecha">fecha</span>
+          <div style="margin-top: 10px;"></div>
+          <span class="modal-descripcion JuegoModalDescripcion">descripcion</span>
+        </div>
+        @auth
+        <div class="modal-footer modal-footer-juego">
+          <a type="button" href="#" class="btn btn-danger modal-button-danger" onclick="return confirm('¿ Estas seguro de eliminar el juego ?')"><i class="fas fa-trash-alt modal-icon-trash"></i></a>
+          <a type="button" href="#" class="btn btn-warning modal-button-warning"><i class="fas fa-edit modal-icon-edit"></i></a>
+        </div>
+      </div>
+      @endauth
+    </div>
+  </div>
+
+</div>
 </div>
 <!-- Final index-2 -->
 

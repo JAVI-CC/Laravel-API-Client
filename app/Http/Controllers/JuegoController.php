@@ -88,7 +88,7 @@ class JuegoController extends Controller
           $error = $juegos->error;    
           return view('not_found', compact('error'));
         } else {
-          $juegos = $this->juego->paginate($juegos, 6);
+          $juegos = $this->juego->paginate($juegos, 100);
           $search = $request->search;
           $order = $request->order;
           return view('index', compact('juegos', 'search', 'order'));

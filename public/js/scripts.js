@@ -1,11 +1,29 @@
 $(document).ready(function () {
     var icon_cookie = getCookie("index-icon");
-    
-    if(icon_cookie == 1) {
+
+    if (icon_cookie == 1) {
         $(".icon-bars").click();
-    } else if(icon_cookie == 2) {
+    } else if (icon_cookie == 2) {
         $(".icon-images").click();
     }
+
+    //Modal
+    $(".open-modal-img").click(function () {
+        var nombre = $(this).children(".modal-juego-nombre").val();
+        var desarrolladora = $(this).children(".modal-juego-desarrolladora").val();
+        var descripcion = $(this).children(".modal-juego-descripcion").val();
+        var slug = $(this).children(".modal-juego-slug").val();
+        var fecha = $(this).children(".modal-juego-fecha").val();
+
+        $(".JuegoModalNombre").text(nombre);
+        $(".JuegoModalDesarrolladora").text(desarrolladora);
+        $(".JuegoModalDescripcion").text(descripcion);
+        $(".JuegoModalFecha").text(fecha);
+        $(".modal-button-warning").attr("href", "/juegos/"+slug);
+        $(".modal-button-danger").attr("href", "/juegos/delete/"+slug);
+
+    });
+
 
 });
 
