@@ -17,7 +17,7 @@ class JuegoController extends Controller
 
     public function getAll() {
         $juegos = $this->juego->getall();
-        $juegos = $this->juego->paginate($juegos, 8);
+        $juegos = $this->juego->paginate($juegos, 12);
         return $juegos;
     }
 

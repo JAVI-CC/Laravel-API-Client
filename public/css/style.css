@@ -1,6 +1,7 @@
 body {
   background-color: #000;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif!Important;
+  letter-spacing: 0.4!Important;
 }
 
 #index-1 {
@@ -415,6 +416,10 @@ label {
 
   .div-form-search {
     margin-right: -15px!Important;
+  }
+
+  .div-index-2-images {
+    display: block;
   }
 
 }
