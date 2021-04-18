@@ -63,7 +63,7 @@
       <div>
         <figure>
           <div class="open-modal-img" data-toggle="modal" data-target="#ModalJuego">
-            <img class="juegos-images" src="http://{{ $juego->imagen }}" width="240" height="320">
+            <img class="juegos-images" src="{{ $juego->imagen }}" width="240" height="320">
             <input type="hidden" class="modal-juego-nombre" value="{{ $juego->nombre }}">
             <input type="hidden" class="modal-juego-desarrolladora" value="{{ $juego->desarrolladora }}">
             <input type="hidden" class="modal-juego-fecha" value="{{ $juego->fecha }}">
