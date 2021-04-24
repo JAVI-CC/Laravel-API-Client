@@ -73,7 +73,7 @@
         </figure>
       </div>
     </div>
-    <span class="index-2-juego-nombre">{{ $juego->nombre }}</span>
+    <span><a class="index-2-juego-nombre" href="/juegos/{{ $juego->slug }}">{{ $juego->nombre }}</a></span>
   </div>
 
   @endforeach

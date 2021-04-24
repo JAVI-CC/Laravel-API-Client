@@ -53,8 +53,8 @@
           </span>
           <input type="text" class="form-control input-upload" disabled placeholder="Ningún archivo seleccionado" style="@isset($error->imagen['0']) border-color: red; @endisset">
         </div>
+        <span style="color: white; font-size: 11px">La imagen se recomienda mantener una relación de aspecto de 300x400</span>
       </div>
-      <div style="margin-top: 5px;"></div>
       <small style="color: red;">@isset($error->imagen['0']) {{ $error->imagen['0'] }} @endisset</small>
     </div>
   </div>

@@ -51,8 +51,17 @@
     <div style="margin-top: 5px;"></div>
     <small style="color: red;">@isset($error->descripcion['0']) {{ $error->descripcion['0'] }} @endisset</small>
   </div>
+
+  <div class="div-cambiar-imagen">
+    <label class="input-title" style="margin-right: 10px;">Actualizar imagen:</label>
+      <label class="switch">
+      <input class="int-input-check" type="checkbox">
+      <div class="slider round"></div>
+    </label>
+  </div>
+
   <div class="form-group" style="margin-top: 15px; margin-bottom: 40px">
-    <div class="col col-md-5 col-xs-12" style="padding-left: 0px;">
+    <div class="col col-md-5 col-xs-12 div-form-imagen" style="padding-left: 0px;">
       <label class="input-title">Seleccionar imagen:</label>
       <div class="">
         <input type="file" name="imagen" class="input-file" style="width: 100%;">
@@ -63,6 +72,7 @@
           </span>
           <input type="text" class="form-control input-upload" disabled placeholder="Ningún archivo seleccionado" style="@isset($error->imagen['0']) border-color: red; @endisset">
         </div>
+        <span style="color: white; font-size: 11px">Se recomienda mantener una relación de aspecto de 300x400</span>
       </div>
       <div style="margin-top: 5px;"></div>
       <small style="color: red;">@isset($error->imagen['0']) {{ $error->imagen['0'] }} @endisset</small>

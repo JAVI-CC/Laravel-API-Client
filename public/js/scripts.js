@@ -1,10 +1,21 @@
 $(document).ready(function () {
     var icon_cookie = getCookie("index-icon");
-
+    var edit_image = getCookie("edit-image");
+    
+    //Cookie inicio index
     if (icon_cookie == 1) {
         $(".icon-bars").click();
     } else if (icon_cookie == 2) {
         $(".icon-images").click();
+    }
+
+    //Cookie edit image
+    if (edit_image == 0) {
+        $('.int-input-check').prop('checked', false);
+        $(".div-form-imagen").hide();
+    } else if (edit_image == 1) {
+        $('.int-input-check').prop('checked', true);
+        $(".div-form-imagen").show();
     }
 
     //Modal
@@ -19,8 +30,22 @@ $(document).ready(function () {
         $(".JuegoModalDesarrolladora").text(desarrolladora);
         $(".JuegoModalDescripcion").text(descripcion);
         $(".JuegoModalFecha").text(fecha);
-        $(".modal-button-warning").attr("href", "/juegos/"+slug);
-        $(".modal-button-danger").attr("href", "/juegos/delete/"+slug);
+        $(".modal-button-warning").attr("href", "/juegos/" + slug);
+        $(".modal-button-danger").attr("href", "/juegos/delete/" + slug);
+
+    });
+
+
+    //Button interruptor edit imagen
+    $(".slider").click(function () {
+        var expiryDate = new Date();
+        if ($('.int-input-check').is(':checked')) {
+            $(".div-form-imagen").hide();
+            document.cookie = "edit-image=0;" + expiryDate.setMonth(expiryDate.getMonth() + 1) + "; path=/";
+        } else {
+            $(".div-form-imagen").show();
+            document.cookie = "edit-image=1;" + expiryDate.setMonth(expiryDate.getMonth() + 1) + "; path=/";
+        }   
 
     });
 

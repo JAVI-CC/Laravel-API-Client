@@ -22,12 +22,17 @@ body {
 .div-form-search {
   float: right; 
   margin-bottom: 15px;
+  margin-left: 250px;
 }
 
 .index-2-juego-nombre {
   color: white;
   font-size: 14px;
   font-weight: 400;
+}
+
+.index-2-juego-nombre:hover {
+  color: white;
 }
 
 .juegos-images {
@@ -137,6 +142,15 @@ body {
 .index-alert {
   display: table;
   width: 100%;
+}
+
+.div-cambiar-imagen {
+  display: flex;
+  align-items: center;
+}
+
+.div-form-imagen {
+  display: none;
 }
 
 .page-item.disabled .page-link {
@@ -400,6 +414,10 @@ label {
 
   .div-index-2-images {
     max-width: 50%;
+  }
+
+  .div-form-search {
+    margin-left: 0px;
   }
 
 }

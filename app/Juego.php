@@ -42,6 +42,18 @@ class Juego extends Model
         File::delete(File::glob(storage_path('/background.*')));
     }
 
+    public function apiupdate($request) {
+
+        if($request->exists('imagen') == true) {
+            $update = $this->apiupdatewithimage($request);
+            return $update;
+        } else { 
+            $update = $this->apiupdatewithoutimage($request);
+            return $update;
+        }
+       
+    }
+
     public function getall()
     {
         $response = $this->client->request('GET', '/api/juegos');
@@ -87,14 +99,17 @@ class Juego extends Model
         return json_decode($response->getBody()->getContents());
     }
 
-    public function apiupdate($request)
+    public function apiupdatewithoutimage($request)
+    {
+        $response = $this->client->request('PUT', '/api/juegos/edit', ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'), 'slug' => $request->input('slug')]]);
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function apiupdatewithimage($request)
     {
         $filename = $this->upload_image($request->file('imagen'));
 
         $response = $this->client->request('POST', '/api/juegos/edit' , [
-            'headers' => [
-                '_method' => 'PUT'
-            ],
             
             'multipart' => [
             [ 
