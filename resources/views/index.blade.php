@@ -15,7 +15,7 @@
 @endauth
 
 <div style="margin-top: 30px;"></div>
-@isset($error)<div class="alert alert-danger index-alert" role="alert" style="margin-top: 30px;"><i class="fas fa-times-circle icon-error"></i><span>{{ $error }}</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
+@isset($error)<div class="alert alert-danger index-alert" role="alert" style="margin-top: 30px;"><i class="fas fa-exclamation-circle icon-error"></i><span>{{ $error }}</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
 @isset($success)<div class="alert alert-success index-alert" role="alert" style="margin-top: 30px;"><i class="fas fa-check-circle icon-check"></i><span>{{ $success }}</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
 
 @section('search')

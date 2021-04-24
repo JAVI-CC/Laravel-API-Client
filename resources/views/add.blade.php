@@ -9,7 +9,7 @@
 @section('header')
 
 <!-- HTML -->
-@isset($error)<div class="alert alert-danger" role="alert" style="margin-top: 30px;"><i class="fas fa-times-circle icon-error"></i>Corrige los siguientes errores:<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
+@isset($error)<div class="alert alert-danger" role="alert" style="margin-top: 30px;"><i class="fas fa-exclamation-circle icon-error"></i>Corrige los siguientes errores:<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
 
 <form enctype="multipart/form-data" method="POST" action="{{ url("juegos/add") }}" >
   @csrf
