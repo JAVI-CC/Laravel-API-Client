@@ -12,7 +12,6 @@ class JuegoController extends Controller
     public function __construct(Juego $juego)
     {
         $this->juego = $juego;
-        $this->middleware('auth')->only('add', 'update', 'delete');
     }
 
     public function getAll() {

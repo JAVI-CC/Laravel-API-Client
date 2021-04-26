@@ -8,11 +8,11 @@
 
 @section('header')
 
-@auth
+@if (Cookie::get('token') !== null && !isset($logout))
 <button id="btn-add" onclick="window.location='/juegos/add/'">
   <i class="fas fa-plus icon-add"></i>
 </button>
-@endauth
+@endif
 
 <div style="margin-top: 30px;"></div>
 @isset($error)<div class="alert alert-danger index-alert" role="alert" style="margin-top: 30px;"><i class="fas fa-exclamation-circle icon-error"></i><span>{{ $error }}</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
@@ -35,7 +35,7 @@
 
     <div class="card-footer">
       <small class="text-muted">{{ $juego->fecha }}</small>
-      @auth
+      @if (Cookie::get('token') !== null && !isset($logout))
       <a href="/juegos/delete/{{ $juego->slug }}" onclick="return confirm('¿ Estas seguro de eliminar el juego {{ $juego->nombre }} ?')">
         <div class="button_delete" style="float: right; margin-left: 15px;">
           <i class="fas fa-trash-alt"></i>
@@ -45,7 +45,7 @@
       <div class="button_edit" style="float: right;">
         <i class="fas fa-edit"></i>
       </div>
-      @endauth
+      @endif
     </a>
   </div>
 </div>
@@ -96,13 +96,13 @@
           <div style="margin-top: 10px;"></div>
           <span class="modal-descripcion JuegoModalDescripcion">descripcion</span>
         </div>
-        @auth
+        @if (Cookie::get('token') !== null && !isset($logout))
         <div class="modal-footer modal-footer-juego">
           <a type="button" href="#" class="btn btn-danger modal-button-danger" onclick="return confirm('¿ Estas seguro de eliminar el juego ?')"><i class="fas fa-trash-alt modal-icon-trash"></i></a>
           <a type="button" href="#" class="btn btn-warning modal-button-warning"><i class="fas fa-edit modal-icon-edit"></i></a>
         </div>
       </div>
-      @endauth
+      @endif
     </div>
   </div>
 

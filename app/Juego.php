@@ -2,11 +2,14 @@
 
 namespace App;
 
+use Cookie;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File; 
 
 
@@ -16,18 +19,32 @@ class Juego extends Model
 
     protected $headers = [
         'Content-Type' => 'application/json',
-        'api-key' => '$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu',
+        'Accept' => 'application/json',
     ];
+
+    public $client_login;
 
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'https://laravelapijuegos.herokuapp.com',
+            'base_uri' => '192.168.1.36:8000',
             'headers' => $this->headers,
             'defaults' => [
                 'exceptions' => false
             ]
         ]);
+    }
+
+    public function getCookieToken(){
+        return Cookie::get('token');
+    }
+
+    public function setCookieToken($token){
+        Cookie::queue('token', $token, 36000);
+    }
+
+    public function destroyCookiToken(){
+        Cookie::queue(Cookie::forget('token'));
     }
 
     protected function upload_image($imagen){
@@ -69,8 +86,8 @@ class Juego extends Model
     public function apiadd($request)
     {
         $filename = $this->upload_image($request->file('imagen'));
-
-        $response = $this->client->request('POST', '/api/juegos', [ 'multipart' => [
+        $token = $this->getCookieToken();
+        $response = $this->client->request('POST', '/api/juegos', [ 'headers' => ['Authorization' => $token], 'multipart' => [
             [ 
                 'name' => 'nombre', 
                 'contents' => $request->input('nombre')
@@ -101,16 +118,16 @@ class Juego extends Model
 
     public function apiupdatewithoutimage($request)
     {
-        $response = $this->client->request('PUT', '/api/juegos/edit', ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'), 'slug' => $request->input('slug')]]);
+        $token = $this->getCookieToken();
+        $response = $this->client->request('PUT', '/api/juegos/edit', ['headers' => ['Authorization' => $token], 'form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'), 'slug' => $request->input('slug')]]);
         return json_decode($response->getBody()->getContents());
     }
 
     public function apiupdatewithimage($request)
     {
         $filename = $this->upload_image($request->file('imagen'));
-
-        $response = $this->client->request('POST', '/api/juegos/edit' , [
-            
+        $token = $this->getCookieToken();
+        $response = $this->client->request('POST', '/api/juegos/edit', [ 'headers' => ['Authorization' => $token],            
             'multipart' => [
             [ 
                 'name' => 'nombre', 
@@ -147,7 +164,8 @@ class Juego extends Model
 
     public function apidelete($slug)
     {
-        $response = $this->client->request('DELETE', '/api/juegos/delete/' . $slug);
+        $token = $this->getCookieToken();
+        $response = $this->client->request('DELETE', '/api/juegos/delete/' . $slug, ['headers' => ['Authorization' => $token]]);
         return json_decode($response->getBody()->getContents());
     }
 
@@ -179,5 +197,41 @@ class Juego extends Model
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
+
+
+    /*****************************************Auth***********************************************/
+    public function register($request)
+    {
+        $response = $this->client->request('POST', '/api/auth/register', ['form_params' => ['name' => $request->input('name'), 'email' => $request->input('email'), 'password' => $request->input('password'), 'password_confirmation' => $request->input('password_confirmation')]]);
+        $res = json_decode($response->getBody()->getContents());
+        //$head = Arr::add($this->headers, 'Authorization', $token);
+    }
+
+    public function login($request)
+    {
+        $response = $this->client->request('POST', '/api/auth/login', ['form_params' => ['email' => $request->input('email'), 'password' => $request->input('password')]]);
+        $res = json_decode($response->getBody()->getContents());
+        
+        if(isset($res->token)) {
+          $this->setCookieToken($res->token);
+          //Cookie::queue('token', $res->token, 36000);
+        }
+
+        return $res;
+    }
+
+    public function userinfo()
+    {
+        $token = $this->getCookieToken();
+        $response = $this->client->request('GET', '/api/auth/userinfo', ['headers' => ['Authorization' => $token]]);
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function logout()
+    {
+        $token = $this->getCookieToken();
+        $this->client->request('POST', '/api/auth/logout', ['headers' => ['Authorization' => $token]]);
+        $this->destroyCookiToken();
     }
 }

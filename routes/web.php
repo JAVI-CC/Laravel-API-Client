@@ -16,19 +16,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'JuegoController@index')->name('juegos.index');
 
+Route::prefix('auth/')->group(function () {
+    //Route::post('register', 'AuthController@register')->name('register');
+    Route::post('login', 'AuthController@login')->name('login');
+    Route::post('logout', 'AuthController@logout')->name('logout');
+    Route::get('userinfo', 'AuthController@userinfo')->name('userinfo');
+});
+
 Route::prefix('juegos/')->group(function () {
 
     Route::get('add', function () {
         return view('add');
-    })->name('add_form')->middleware('auth');
+    })->name('add_form');
 
-    Route::post('add', 'JuegoController@add')->name('add')->middleware('auth');
+    Route::post('add', 'JuegoController@add')->name('add');
 
-    Route::get('{slug}', 'JuegoController@show')->name('show')->middleware('auth');
+    Route::get('{slug}', 'JuegoController@show')->name('show');
 
     Route::post('edit', 'JuegoController@update')->name('update');
 
-    Route::get('delete/{slug}', 'JuegoController@delete')->name('delete')->middleware('auth');
+    Route::get('delete/{slug}', 'JuegoController@delete')->name('delete');
 
     Route::post('search', 'JuegoController@search')->name('search');
 });

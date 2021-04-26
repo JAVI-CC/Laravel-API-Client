@@ -8,11 +8,11 @@
 
 @section('header')
 
-@auth
+@if (Cookie::get('token') !== null)
 <button id="btn-add" onclick="window.location='/juegos/add/'">
   <i class="fas fa-plus icon-add"></i>
 </button>
-@endauth
+@endif
 
 <div style="margin-top: 30px;"></div>
 
