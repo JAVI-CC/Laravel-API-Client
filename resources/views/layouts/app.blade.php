@@ -56,6 +56,9 @@
                             </form>
                         @endif
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: white; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 400; color: white;" href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">Más información</a>
+                        </li>
                     </ul>
                 </div>
             </div>
