@@ -29,9 +29,9 @@ class JuegoController extends Controller
     public function add(Request $request)
     {
         $error = $this->juego->apiadd($request);
-        if (isset($error->success)) {
+        if (isset($error->slug)) {
             $juegos = $this->getAll();
-            $success = $error->success;
+            $success = 'Se ha insertado correctamente el juego: ' . $error->nombre;
             return view('index', compact('juegos', 'success'));
         } else {
             $values = $request->all();
@@ -55,8 +55,8 @@ class JuegoController extends Controller
     {
         $error = $this->juego->apiupdate($request);
         $juegos = $this->getAll();
-        if (isset($error->success)) {
-            $success = $error->success;
+        if (isset($error->slug)) {
+            $success = 'Se ha modificado correctamente el juego: ' . $error->nombre;
             return view('index', compact('juegos', 'success'));
         } else if(isset($error->error)) {
             $error = $error->error;
