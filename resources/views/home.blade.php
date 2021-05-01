@@ -20,4 +20,5 @@
         </div>
     </div>
 </div>
+<?php header("Refresh:4; url=/"); ?>
 @endsection
