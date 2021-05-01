@@ -29,7 +29,7 @@
   <div class="card card-index">
     <div class="card-body">
       <h5 class="card-title">{{ $juego->nombre }}</h5>
-      <strong style="font-size: 13px;">{{ $juego->desarrolladora }}</strong>
+      <a href="/desarrolladora/{{$juego->desarrolladora->slug}}" class="text-desarrolladora-index">{{ $juego->desarrolladora->nombre }}</a>
       <p class="card-text">{{ $juego->descripcion }}</p>
     </div>
 
@@ -65,7 +65,8 @@
           <div class="open-modal-img" data-toggle="modal" data-target="#ModalJuego">
             <img class="juegos-images" src="{{ $juego->imagen }}" width="240" height="320">
             <input type="hidden" class="modal-juego-nombre" value="{{ $juego->nombre }}">
-            <input type="hidden" class="modal-juego-desarrolladora" value="{{ $juego->desarrolladora }}">
+            <input type="hidden" class="modal-juego-desarrolladora" value="{{ $juego->desarrolladora->nombre }}">
+            <input type="hidden" class="modal-juego-desarrolladora-slug" value="{{ $juego->desarrolladora->slug }}">
             <input type="hidden" class="modal-juego-fecha" value="{{ $juego->fecha }}">
             <input type="hidden" class="modal-juego-descripcion" value="{{ $juego->descripcion }}">
             <input type="hidden" class="modal-juego-slug" value="{{ $juego->slug }}">
@@ -89,7 +90,7 @@
           </button>
         </div>
         <div class="modal-header modal-header-subtitulo">
-          <h5 class="modal-title JuegoModalDesarrolladora">desarrolladora</h5>
+          <a class="modal-title text-desarrolladora-index JuegoModalDesarrolladora">desarrolladora</a>
         </div>
         <div class="modal-body modal-body-content">
           <span class="modal-fecha JuegoModalFecha">fecha</span>

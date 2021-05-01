@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col col-md-8 col-xs-12">
       <label class="input-title">Desarrolladora:</label>
-      <input type="text" name="desarrolladora" class="form-control input-desarrolladora" value="@isset($juego->nombre){{$juego->desarrolladora}}@endisset @isset($values['desarrolladora']){{$values['desarrolladora']}}@endisset" style="@isset($error->desarrolladora['0']) border-color: red; @endisset" placeholder="Desarrolladora">
+      <input type="text" name="desarrolladora" class="form-control input-desarrolladora" value="@isset($juego->nombre){{$juego->desarrolladora->nombre}}@endisset @isset($values['desarrolladora']){{$values['desarrolladora']}}@endisset" style="@isset($error->desarrolladora['0']) border-color: red; @endisset" placeholder="Desarrolladora">
       <div style="margin-top: 5px;"></div>
       <small style="color: red;">@isset($error->desarrolladora['0']) {{ $error->desarrolladora['0'] }} @endisset</small>
     </div>

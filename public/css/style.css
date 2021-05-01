@@ -189,7 +189,17 @@ body {
   background-color: #f6bb43;
   color: white;
   border: 1px solid #6c757d;
+}
 
+.text-desarrolladora-index {
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  font-size: 13px;
+  color: white;
+}
+
+.text-desarrolladora-index:hover {
+  color: white;
 }
 
 .input-title {

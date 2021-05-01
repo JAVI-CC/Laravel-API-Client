@@ -83,6 +83,12 @@ class Juego extends Model
         return json_decode($response->getBody()->getContents());
     }
 
+    public function getslugdesarrolladora($slug)
+    {
+        $response = $this->client->request('GET', '/api/juegos/desarrolladoras/' . $slug);
+        return json_decode($response->getBody()->getContents());
+    }
+
     public function apiadd($request)
     {
         $filename = $this->upload_image($request->file('imagen'));

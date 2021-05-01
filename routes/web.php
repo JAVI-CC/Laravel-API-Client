@@ -40,6 +40,9 @@ Route::prefix('juegos/')->group(function () {
     Route::post('search', 'JuegoController@search')->name('search');
 });
 
+/* Desarrolladora */
+Route::get('desarrolladora/{slug}', 'JuegoController@showdesarrolladora')->name('showdesarrolladora');
+
 /* Auth */
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

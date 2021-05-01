@@ -51,6 +51,19 @@ class JuegoController extends Controller
         }
     }
 
+    public function showdesarrolladora($slug)
+    {
+        $juegos = $this->juego->getslugdesarrolladora($slug);
+        if(isset($juegos->error)) {
+          $error = $juegos->error;
+          $juegos = $this->getAll();
+          return view('index', compact('juegos', 'error'));
+        } else { 
+          $juegos = $this->juego->paginate($juegos, 100);
+          return view('index', compact('juegos'));
+        }
+    }
+
     public function update(Request $request)
     {
         $error = $this->juego->apiupdate($request);

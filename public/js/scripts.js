@@ -22,12 +22,14 @@ $(document).ready(function () {
     $(".open-modal-img").click(function () {
         var nombre = $(this).children(".modal-juego-nombre").val();
         var desarrolladora = $(this).children(".modal-juego-desarrolladora").val();
+        var desarrolladora_slug = $(this).children(".modal-juego-desarrolladora-slug").val();
         var descripcion = $(this).children(".modal-juego-descripcion").val();
         var slug = $(this).children(".modal-juego-slug").val();
         var fecha = $(this).children(".modal-juego-fecha").val();
 
         $(".JuegoModalNombre").text(nombre);
         $(".JuegoModalDesarrolladora").text(desarrolladora);
+        $(".JuegoModalDesarrolladora").attr("href", "/desarrolladora/"+ desarrolladora_slug)
         $(".JuegoModalDescripcion").text(descripcion);
         $(".JuegoModalFecha").text(fecha);
         $(".modal-button-warning").attr("href", "/juegos/" + slug);
