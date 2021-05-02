@@ -27,7 +27,7 @@ class Juego extends Model
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'https://laravelapijuegos.herokuapp.com',
+            'base_uri' => env('API_SERVER'),
             'headers' => $this->headers,
             'defaults' => [
                 'exceptions' => false
