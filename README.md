@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-<p>Laravel 7 application web responsive that contains interface web, user registers and the application connected to a Laravel API <a href="https://laravelapijuegos.herokuapp.com" target="_blank">https://laravelapijuegos.herokuapp.com</a></p>
+<p>Laravel 7 application web responsive that contains interface web, user registers and the application connected to a Laravel API <a href="https://laravelapijuegos.herokuapp.com" target="_blank"> https://laravelapijuegos.herokuapp.com</a></p>
 
 <p>Project Laravel Api Server: <a href="https://github.com/JAVI-CC/Laravel-API-Server" target="_blank">https://github.com/JAVI-CC/Laravel-API-Server</a></p>
 
@@ -39,13 +39,13 @@
 </ul>
 
 <h4>Containers structure:</h4>
-<div class="highlight highlight-source-shell"><pre>├── laravel-api-server-app
-├── laravel-api-server-web</pre></div>
+<div class="highlight highlight-source-shell"><pre>├── laravel-api-client-app
+├── laravel-api-client-web</pre></div>
 
 <h4>Setup:</h4>
 <pre>
-<code>$ git clone https://github.com/JAVI-CC/Laravel-API-Server.git
-$ cd Laravel-API-Server-master
+<code>$ git clone https://github.com/JAVI-CC/Laravel-API-Client.git
+$ cd Laravel-API-Client-master
 $ cp .env.example .env
 $ docker-compose up -d
 $ docker-compose exec app composer install
