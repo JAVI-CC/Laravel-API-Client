@@ -17,6 +17,10 @@
 <h2>.env</h2>
 <p><strong>API_SERVER= </strong>https://laravelapijuegos.herokuapp.com</p>
 
+<h4>Credentials</h4>
+<span>User: admin@email.com</span><br>
+<span>Password: 12345678</span>
+
 <hr>
 
 <h3>Show get all registries API SERVER:</h3>
