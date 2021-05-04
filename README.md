@@ -17,7 +17,10 @@
 <h2>.env</h2>
 <p><strong>API_SERVER= </strong>https://laravelapijuegos.herokuapp.com</p>
 
-<h4>Credentials</h4>
+<h2>Demo</h2>
+<a href="http://laravelclienteapi.herokuapp.com" target="_blank">http://laravelclienteapi.herokuapp.com</a>
+
+<span>Credentials</span>
 <span>User: admin@email.com</span><br>
 <span>Password: 12345678</span>
 
