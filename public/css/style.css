@@ -499,6 +499,14 @@ label {
 
 }
 
+@media only screen and (max-width: 425px) {
+
+  .alert-success {
+    display: flex;
+  }
+
+}
+
   @media only screen and (max-width: 410px) {
 
     .div-input-des-fecha {
