@@ -23,6 +23,18 @@ $(document).ready(function () {
         var nombre = $(this).children(".modal-juego-nombre").val();
         var desarrolladora = $(this).children(".modal-juego-desarrolladora").val();
         var desarrolladora_slug = $(this).children(".modal-juego-desarrolladora-slug").val();
+        var generos = [],
+        inputs = $(this).children('input[type="hidden"].modal-juego-genero');
+        for (var i = 0; i < inputs.length; i++) {
+          generos.push(inputs[i].value);
+        }
+        console.log(generos);
+        var generos_slugs = [],
+        inputs = $(this).children('input[type="hidden"].modal-juego-genero-slug');
+        for (var i = 0; i < inputs.length; i++) {
+          generos_slugs.push(inputs[i].value);
+        }
+   
         var descripcion = $(this).children(".modal-juego-descripcion").val();
         var slug = $(this).children(".modal-juego-slug").val();
         var fecha = $(this).children(".modal-juego-fecha").val();
@@ -31,6 +43,10 @@ $(document).ready(function () {
         $(".JuegoModalDesarrolladora").text(desarrolladora);
         $(".JuegoModalDesarrolladora").attr("href", "/desarrolladora/"+ desarrolladora_slug)
         $(".JuegoModalDescripcion").text(descripcion);
+        $(".JuegoModalGeneros").empty();
+        for (var i = 0; i < generos.length; i++) {
+          $(".JuegoModalGeneros").append("<a href='/genero/"+generos_slugs[i]+"' class='tags-generos'>"+generos[i]+'</a>');
+        }
         $(".JuegoModalFecha").text(fecha);
         $(".modal-button-warning").attr("href", "/juegos/" + slug);
         $(".modal-button-danger").attr("href", "/juegos/delete/" + slug);
@@ -51,7 +67,19 @@ $(document).ready(function () {
 
     });
 
+    //Bootrap multiselect
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+        removeItemButton: true,
+        maxItemCount:5,
+        searchResultLimit:5,
+        renderChoiceLimit:0
+    });
 
+});
+
+//Eliminar valores duplicados del multiselect
+$("#choices-multiple-remove-button option").val(function(idx, val) {
+  $(this).siblings('[value="'+ val +'"]').remove();
 });
 
 //Obtener el valor de la cookie

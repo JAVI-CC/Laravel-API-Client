@@ -25,9 +25,7 @@ Route::prefix('auth/')->group(function () {
 
 Route::prefix('juegos/')->group(function () {
 
-    Route::get('add', function () {
-        return view('add');
-    })->name('add_form');
+    Route::get('add', 'JuegoController@add_form')->name('add_form');
 
     Route::post('add', 'JuegoController@add')->name('add');
 
@@ -42,6 +40,9 @@ Route::prefix('juegos/')->group(function () {
 
 /* Desarrolladora */
 Route::get('desarrolladora/{slug}', 'JuegoController@showdesarrolladora')->name('showdesarrolladora');
+
+/* Genero */
+Route::get('genero/{slug}', 'JuegoController@showgenero')->name('showgenero');
 
 /* Auth */
 Auth::routes();

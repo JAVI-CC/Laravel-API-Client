@@ -72,6 +72,7 @@ body {
 .card-body {
   background-color: #1a1a1a;
   color: white;
+  padding-bottom: 0px;
 }
 
 .card-text {
@@ -223,6 +224,22 @@ i {
   font-size: 16px;
 }
 
+.tags-generos {
+  color: white;
+  background-color: #007bff!Important;
+  margin-right: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 12px 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  float: left;
+}
+
+.tags-generos:hover {
+  color: white;
+}
+
 .div-icons-bars-images {
   float: left;
   margin-top: 10px;
@@ -313,6 +330,16 @@ i {
   text-align: left;
   font-size: 14px;
   font-weight: 300;
+  padding-bottom: 0px;
+}
+
+.modal-content {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.card-text-descipcion {
+  margin-bottom: 10px;
 }
 
 .modal-footer-juego {
@@ -517,4 +544,11 @@ label {
       margin-bottom: 15px;
     }
   
+}
+
+@media only screen and (max-width: 410px) {
+
+  .mobile-margin-bottom-16 {
+    margin-bottom: 16px;
+  }
 }
