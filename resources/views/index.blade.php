@@ -30,7 +30,12 @@
     <div class="card-body">
       <h5 class="card-title">{{ $juego->nombre }}</h5>
       <a href="/desarrolladora/{{$juego->desarrolladora->slug}}" class="text-desarrolladora-index">{{ $juego->desarrolladora->nombre }}</a>
-      <p class="card-text">{{ $juego->descripcion }}</p>
+      <p class="card-text card-text-descipcion">{{ $juego->descripcion }}</p>
+        @foreach($juego->generos as $genero)
+          <div class="div-tags-generos-mobile">
+            <a href="/genero/{{ $genero->slug }}" class="tags-generos">{{ $genero->nombre }}</a>
+          </div>
+        @endforeach
     </div>
 
     <div class="card-footer">
@@ -70,6 +75,10 @@
             <input type="hidden" class="modal-juego-fecha" value="{{ $juego->fecha }}">
             <input type="hidden" class="modal-juego-descripcion" value="{{ $juego->descripcion }}">
             <input type="hidden" class="modal-juego-slug" value="{{ $juego->slug }}">
+            @foreach($juego->generos as $genero)
+              <input type="hidden" class="modal-juego-genero" name="genero[]" value="{{ $genero->nombre }}">
+              <input type="hidden" class="modal-juego-genero-slug" name="genero-slug[]" value="{{ $genero->slug }}">
+            @endforeach
           </div>
         </figure>
       </div>
@@ -96,6 +105,10 @@
           <span class="modal-fecha JuegoModalFecha">fecha</span>
           <div style="margin-top: 10px;"></div>
           <span class="modal-descripcion JuegoModalDescripcion">descripcion</span>
+          <div style="margin-top: 10px;"></div>
+          <div class="JuegoModalGeneros">
+
+          </div>
         </div>
         @if (Cookie::get('token') !== null && !isset($logout))
         <div class="modal-footer modal-footer-juego">

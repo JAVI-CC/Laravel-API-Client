@@ -32,7 +32,7 @@
     <small style="color: red;">@isset($error->nombre['0']) {{ $error->nombre['0'] }} @endisset</small>
   </div>
   <div class="row">
-    <div class="col col-md-8 col-xs-12">
+    <div class="col col-md-8 col-xs-12 mobile-margin-bottom-16">
       <label class="input-title">Desarrolladora:</label>
       <input type="text" name="desarrolladora" class="form-control input-desarrolladora" value="@isset($juego->nombre){{$juego->desarrolladora->nombre}}@endisset @isset($values['desarrolladora']){{$values['desarrolladora']}}@endisset" style="@isset($error->desarrolladora['0']) border-color: red; @endisset" placeholder="Desarrolladora">
       <div style="margin-top: 5px;"></div>
@@ -50,6 +50,34 @@
     <textarea class="form-control input-descripcion" name="descripcion" rows="3" placeholder="Descripción..." maxlength="255" style="@isset($error->descripcion['0']) border-color: red; @endisset">@isset($juego->descripcion){{$juego->descripcion}}@endisset @isset($values['descripcion']){{$values['descripcion']}}@endisset</textarea>
     <div style="margin-top: 5px;"></div>
     <small style="color: red;">@isset($error->descripcion['0']) {{ $error->descripcion['0'] }} @endisset</small>
+  </div>
+
+  <div class="form-group" style="margin-bottom: 30px;">
+    <label class="input-title">Generos:</label>
+    <div class="row d-flex mt-100 div-flex-selec-multipe">
+      <div class="col-md-6 div-md-select-multiple"> 
+        <select id="choices-multiple-remove-button" name="generos[]" placeholder="Selecciona hasta 5 generos" multiple style="border:right;">
+        @if(!isset($error))
+          @foreach($juego->generos as $genero)
+            <option value="{{$genero->slug}}" selected>{{$genero->nombre}}</option>
+          @endforeach
+        @endif
+        
+        @isset($values['generos'])
+          @foreach($values['generos'] as $genero)
+            <option value="{{$genero}}" selected>{{$genero}}</option>
+          @endforeach
+        @endisset
+
+        @foreach($generos as $genero)
+          <option value="{{$genero->nombre}}">{{$genero->nombre}}</option>
+        @endforeach
+        </select> 
+      </div>
+    </div>
+    <div style="margin-top: 5px;"></div>
+    <small style="color: red;">@isset($error->generos['0']) {{ $error->generos['0'] }} @endisset</small>
+    <span style="display: none;">{{$i='generos.0'}}</span>
   </div>
 
   <div class="div-cambiar-imagen">
@@ -82,7 +110,7 @@
   <input type="hidden" name="slug" value="@isset($juego->slug){{$juego->slug}}@endisset @isset($values['slug']){{$values['slug']}}@endisset">
 
   <button type="submit" class="btn btn-warning" style="color: white;">Actualizar</button>
-  <div style="margin-bottom: 170px;"></div>
+  <div style="margin-bottom: 120px;"></div>
 </form>
 
 @endsection

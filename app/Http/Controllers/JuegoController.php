@@ -26,28 +26,37 @@ class JuegoController extends Controller
         return view('index', compact('juegos'));
     }
 
+    public function add_form()
+    {
+      $generos = $this->juego->getallgeneros();
+      return view('add', compact('generos'));
+    }
+
     public function add(Request $request)
     {
         $error = $this->juego->apiadd($request);
+        $generos = $this->juego->getallgeneros();
         if (isset($error->slug)) {
             $juegos = $this->getAll();
             $success = 'Se ha insertado correctamente el juego: ' . $error->nombre;
             return view('index', compact('juegos', 'success'));
         } else {
             $values = $request->all();
-            return view('add', compact('error', 'values'));
+            return view('add', compact('error', 'values', 'generos'));
         }
     }
 
     public function show($slug)
     {
         $juego = $this->juego->getslug($slug);
+        $generos = $this->juego->getallgeneros();
+
         $juegos = $this->getAll();
         if(isset($juego->error)) {
           $error = $juego->error;
           return view('index', compact('juegos', 'error'));
         } else { 
-          return view('edit', compact('juego'));
+          return view('edit', compact('juego', 'generos'));
         }
     }
 
@@ -64,10 +73,24 @@ class JuegoController extends Controller
         }
     }
 
+    public function showgenero($slug)
+    {
+        $juegos = $this->juego->getsluggenero($slug);
+        if(isset($juegos->error)) {
+          $error = $juegos->error;
+          $juegos = $this->getAll();
+          return view('index', compact('juegos', 'error'));
+        } else { 
+          $juegos = $this->juego->paginate($juegos, 100);
+          return view('index', compact('juegos'));
+        }
+    }
+
     public function update(Request $request)
     {
         $error = $this->juego->apiupdate($request);
         $juegos = $this->getAll();
+        $generos = $this->juego->getallgeneros();
         if (isset($error->slug)) {
             $success = 'Se ha modificado correctamente el juego: ' . $error->nombre;
             return view('index', compact('juegos', 'success'));
@@ -76,7 +99,7 @@ class JuegoController extends Controller
             return view('index', compact('juegos', 'error'));
         } else {
             $values = $request->all();
-            return view('edit', compact('error', 'values', 'slug'));
+            return view('edit', compact('error', 'values', 'generos', 'slug'));
         }
     }
 

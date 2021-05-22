@@ -8,6 +8,14 @@
 
 @section('header')
 
+@isset($error->generos['0'])
+<style>
+.choices__inner {
+  border: 1px solid red!Important;
+}
+</style>
+@endisset
+
 <!-- HTML -->
 @isset($error)<div class="alert alert-danger" role="alert" style="margin-top: 30px;"><i class="fas fa-exclamation-circle icon-error"></i>Corrige los siguientes errores:<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>@endisset
 
@@ -41,6 +49,28 @@
     <small style="color: red;">@isset($error->descripcion['0']) {{ $error->descripcion['0'] }} @endisset</small>
   </div>
 
+  <div class="form-group" style="margin-bottom: 30px;">
+    <label class="input-title">Generos:</label>
+    <div class="row d-flex mt-100 div-flex-selec-multipe">
+      <div class="col-md-6 div-md-select-multiple"> 
+        <select id="choices-multiple-remove-button" name="generos[]" placeholder="Selecciona hasta 5 generos" multiple style="border:right;">
+        @isset($values['generos'])
+          @foreach($values['generos'] as $genero)
+            <option value="{{$genero}}" selected>{{$genero}}</option>
+          @endforeach
+        @endisset
+
+        @foreach($generos as $genero)
+          <option value="{{$genero->nombre}}">{{$genero->nombre}}</option>
+        @endforeach
+        </select> 
+      </div>
+    </div>
+    <div style="margin-top: 5px;"></div>
+    <small style="color: red;">@isset($error->generos['0']) {{ $error->generos['0'] }} @endisset</small>
+    <span style="display: none;">{{$i='generos.0'}}</span>
+  </div>
+
   <div class="form-group" style="margin-top: 15px; margin-bottom: 40px">
     <div class="col col-md-5 col-xs-12" style="padding-left: 0px;">
       <label class="input-title">Seleccionar imagen:</label>
@@ -60,7 +90,7 @@
   </div>
 
   <button type="submit" class="btn btn-success" style="color: white;">Añadir</button>
-  <div style="margin-bottom: 170px;"></div>
+  <div style="margin-bottom: 80px;"></div>
 </form>
 
 @endsection
