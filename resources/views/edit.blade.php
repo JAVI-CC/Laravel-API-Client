@@ -8,6 +8,14 @@
 
 @section('header')          
 
+@isset($error->generos['0'])
+<style>
+.choices__inner {
+  border: 1px solid red!Important;
+}
+</style>
+@endisset
+
 <!-- HTML -->
 
 <input type="hidden" value="{{$fecha = null}}">
