@@ -99,6 +99,7 @@ class JuegoController extends Controller
             return view('index', compact('juegos', 'error'));
         } else {
             $values = $request->all();
+            $slug = $request->input('slug');
             return view('edit', compact('error', 'values', 'generos', 'slug'));
         }
     }
