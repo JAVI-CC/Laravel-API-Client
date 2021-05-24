@@ -8,7 +8,7 @@
                 <div class="card-header" style="background-color: #212121; color: white;">{{ __('Registrar') }}</div>
 
                 <div class="card-body" style="background-color: #1a1a1a;">
-                    <form method="POST" action="{{ url("auth/register") }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">

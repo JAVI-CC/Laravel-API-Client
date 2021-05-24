@@ -1,17 +1,10 @@
 <div class="container">
-    <form method="POST" action="{{ url("juegos/search") }}">
+    <form method="POST" action="{{ url("juegos/search") }}" style="float: right; margin-bottom: 15px;">
         @csrf 
-        <div class="div-icons-bars-images">
-          <i class="fas fa-bars icon-bars icon-bars-images"></i>
-          <span style="margin-left: 25px;"></span>
-          <div class="div-icon-images">
-            <i class="fas fa-images icon-images icon-bars-images"></i>
-          </div>
-        </div>
-        <div class="form-row align-items-center col-xs-12 div-form-search">
+        <div class="form-row align-items-center col-xs-12">
             <div class="col-auto my-1 div-input-buscar-mobile">
                 <div class="div-input-buscar">
-                    <input type="text" name="search" class="form-control input-search" value="@isset($search){{$search}}@endisset" placeholder="Buscar...">
+                    <input type="text" name="search" class="form-control" value="@isset($search){{$search}}@endisset" placeholder="Buscar...">
                 </div>
             </div>
             <div class="col-auto my-1 div-select-ord-mobile">

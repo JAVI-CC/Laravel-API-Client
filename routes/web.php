@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JuegoController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,35 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [JuegoController::class, 'index'])->name('juegos.index');
+Route::get('/', 'JuegoController@index')->name('juegos.index');
 
-Route::prefix('auth/')->group(function () {
-    //Route::post('register', 'AuthController@register')->name('register');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('userinfo', [AuthController::class, 'userinfo'])->name('userinfo');
-});
+Route::get('/juegos/add', function () {
+    return view('add');
+})->name('add_form')->middleware('auth');
 
-Route::prefix('juegos/')->group(function () {
+Route::post('/juegos/add', 'JuegoController@add')->name('add')->middleware('auth');
 
-    Route::get('add', [JuegoController::class, 'add_form'])->name('add_form');
+Route::get('/juegos/{slug}', 'JuegoController@show')->name('show')->middleware('auth');
 
-    Route::post('add', [JuegoController::class, 'add'])->name('add');
+Route::put('/juegos/{slug}', 'JuegoController@update')->name('update');
 
-    Route::get('{slug}', [JuegoController::class, 'show'])->name('show');
+Route::get('/juegos/delete/{slug}', 'JuegoController@delete')->name('delete')->middleware('auth');
 
-    Route::post('edit', [JuegoController::class, 'update'])->name('update');
-
-    Route::get('delete/{slug}', [JuegoController::class, 'delete'])->name('delete');
-
-    Route::post('search', [JuegoController::class, 'search'])->name('search');
-});
-
-/* Desarrolladora */
-Route::get('desarrolladora/{slug}', [JuegoController::class, 'showdesarrolladora'])->name('showdesarrolladora');
-
-/* Genero */
-Route::get('genero/{slug}', [JuegoController::class, 'showgenero'])->name('showgenero');
+Route::post('/juegos/search', 'JuegoController@search')->name('search');
 
 /* Auth */
 Auth::routes();

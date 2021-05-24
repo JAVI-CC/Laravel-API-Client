@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use GuzzleHttp\Exception\ClientException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -51,12 +50,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        //Error 401 Method Unauthenticated
-        if ($exception instanceof ClientException) {
-            $error = 'No tienes permisos';
-            return response()->view('not_found', compact('error'));
-        }
-
         return parent::render($request, $exception);
     }
 }

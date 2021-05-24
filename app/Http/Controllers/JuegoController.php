@@ -12,11 +12,12 @@ class JuegoController extends Controller
     public function __construct(Juego $juego)
     {
         $this->juego = $juego;
+        $this->middleware('auth')->only('add', 'update', 'delete');
     }
 
     public function getAll() {
         $juegos = $this->juego->getall();
-        $juegos = $this->juego->paginate($juegos, 12);
+        $juegos = $this->juego->paginate($juegos, 6);
         return $juegos;
     }
 
@@ -26,81 +27,44 @@ class JuegoController extends Controller
         return view('index', compact('juegos'));
     }
 
-    public function add_form()
-    {
-      $generos = $this->juego->getallgeneros();
-      return view('add', compact('generos'));
-    }
-
     public function add(Request $request)
     {
         $error = $this->juego->apiadd($request);
-        $generos = $this->juego->getallgeneros();
-        if (isset($error->slug)) {
+        if (isset($error->success)) {
             $juegos = $this->getAll();
-            $success = 'Se ha insertado correctamente el juego: ' . $error->nombre;
+            $success = $error->success;
             return view('index', compact('juegos', 'success'));
         } else {
             $values = $request->all();
-            return view('add', compact('error', 'values', 'generos'));
+            return view('add', compact('error', 'values'));
         }
     }
 
     public function show($slug)
     {
         $juego = $this->juego->getslug($slug);
-        $generos = $this->juego->getallgeneros();
-
         $juegos = $this->getAll();
         if(isset($juego->error)) {
           $error = $juego->error;
           return view('index', compact('juegos', 'error'));
         } else { 
-          return view('edit', compact('juego', 'generos'));
+          return view('edit', compact('juego'));
         }
     }
 
-    public function showdesarrolladora($slug)
+    public function update($slug, Request $request)
     {
-        $juegos = $this->juego->getslugdesarrolladora($slug);
-        if(isset($juegos->error)) {
-          $error = $juegos->error;
-          $juegos = $this->getAll();
-          return view('index', compact('juegos', 'error'));
-        } else { 
-          $juegos = $this->juego->paginate($juegos, 100);
-          return view('index', compact('juegos'));
-        }
-    }
-
-    public function showgenero($slug)
-    {
-        $juegos = $this->juego->getsluggenero($slug);
-        if(isset($juegos->error)) {
-          $error = $juegos->error;
-          $juegos = $this->getAll();
-          return view('index', compact('juegos', 'error'));
-        } else { 
-          $juegos = $this->juego->paginate($juegos, 100);
-          return view('index', compact('juegos'));
-        }
-    }
-
-    public function update(Request $request)
-    {
-        $error = $this->juego->apiupdate($request);
+        $error = $this->juego->apiupdate($request, $slug);
         $juegos = $this->getAll();
-        $generos = $this->juego->getallgeneros();
-        if (isset($error->slug)) {
-            $success = 'Se ha modificado correctamente el juego: ' . $error->nombre;
+        if (isset($error->success)) {
+            $success = $error->success;
             return view('index', compact('juegos', 'success'));
         } else if(isset($error->error)) {
             $error = $error->error;
             return view('index', compact('juegos', 'error'));
         } else {
             $values = $request->all();
-            $slug = $request->input('slug');
-            return view('edit', compact('error', 'values', 'generos', 'slug'));
+            return view('edit', compact('error', 'values', 'slug'));
         }
     }
 
@@ -124,7 +88,7 @@ class JuegoController extends Controller
           $error = $juegos->error;    
           return view('not_found', compact('error'));
         } else {
-          $juegos = $this->juego->paginate($juegos, 100);
+          $juegos = $this->juego->paginate($juegos, 6);
           $search = $request->search;
           $order = $request->order;
           return view('index', compact('juegos', 'search', 'order'));
