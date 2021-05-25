@@ -67,6 +67,9 @@ class JuegoController extends Controller
           $error = $juegos->error;
           $juegos = $this->getAll();
           return view('index', compact('juegos', 'error'));
+        } else if($juegos == null) {
+          $error = 'No se ha encontrado ningún juego';
+          return view('not_found', compact('error'));
         } else { 
           $juegos = $this->juego->paginate($juegos, 100);
           return view('index', compact('juegos'));
@@ -80,6 +83,9 @@ class JuegoController extends Controller
           $error = $juegos->error;
           $juegos = $this->getAll();
           return view('index', compact('juegos', 'error'));
+        } else if($juegos == null) {
+          $error = 'No se ha encontrado ningún juego';
+          return view('not_found', compact('error'));
         } else { 
           $juegos = $this->juego->paginate($juegos, 100);
           return view('index', compact('juegos'));
