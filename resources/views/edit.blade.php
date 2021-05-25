@@ -78,7 +78,11 @@
         @endisset
 
         @foreach($generos as $genero)
-          <option value="{{$genero->slug}}">{{$genero->nombre}}</option>
+          @if(!isset($error))
+            <option value="{{$genero->slug}}">{{$genero->nombre}}</option>
+          @else
+            <option value="{{$genero->nombre}}">{{$genero->nombre}}</option>
+          @endif
         @endforeach
         </select> 
       </div>
