@@ -3,7 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/jquery/3.5.1/jquery.min.js"></script>
   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/bootstrap/js/bootstrap.min.js" rel="stylesheet">
   <link href="/fontawesome/css/all.min.css" rel="stylesheet">

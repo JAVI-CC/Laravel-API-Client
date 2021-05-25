@@ -28,7 +28,6 @@ $(document).ready(function () {
         for (var i = 0; i < inputs.length; i++) {
           generos.push(inputs[i].value);
         }
-        console.log(generos);
         var generos_slugs = [],
         inputs = $(this).children('input[type="hidden"].modal-juego-genero-slug');
         for (var i = 0; i < inputs.length; i++) {
@@ -43,6 +42,8 @@ $(document).ready(function () {
         $(".JuegoModalDesarrolladora").text(desarrolladora);
         $(".JuegoModalDesarrolladora").attr("href", "/desarrolladora/"+ desarrolladora_slug)
         $(".JuegoModalDescripcion").text(descripcion);
+        var frase = "'¿ Estas seguro de eliminar el juego "+nombre+" ?'";
+        $('.modal-button-danger').attr('onclick', 'return confirm('+frase+')');
         $(".JuegoModalGeneros").empty();
         for (var i = 0; i < generos.length; i++) {
           $(".JuegoModalGeneros").append("<a href='/genero/"+generos_slugs[i]+"' class='tags-generos'>"+generos[i]+'</a>');

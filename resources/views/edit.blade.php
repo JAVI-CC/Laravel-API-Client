@@ -78,7 +78,7 @@
         @endisset
 
         @foreach($generos as $genero)
-          <option value="{{$genero->nombre}}">{{$genero->nombre}}</option>
+          <option value="{{$genero->slug}}">{{$genero->nombre}}</option>
         @endforeach
         </select> 
       </div>

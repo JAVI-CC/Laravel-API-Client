@@ -112,7 +112,7 @@
         </div>
         @if (Cookie::get('token') !== null && !isset($logout))
         <div class="modal-footer modal-footer-juego">
-          <a type="button" href="#" class="btn btn-danger modal-button-danger" onclick="return confirm('¿ Estas seguro de eliminar el juego ?')"><i class="fas fa-trash-alt modal-icon-trash"></i></a>
+          <a type="button" href="#" class="btn btn-danger modal-button-danger"><i class="fas fa-trash-alt modal-icon-trash"></i></a>
           <a type="button" href="#" class="btn btn-warning modal-button-warning"><i class="fas fa-edit modal-icon-edit"></i></a>
         </div>
       </div>
