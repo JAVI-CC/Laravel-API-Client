@@ -290,19 +290,22 @@ i {
 }
 
 .div-text-not-found {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .text-not-found {
-  font-size: 35px;
+  font-size: 32px;
   color: white;
-  margin-right: 10px;
+  margin-right: 0px;
 }
 
 .link-not-found {
-  color: white;
-  font-size: 25px;
-  text-decoration: underline;
+  padding: 7px 25px 5px 25px;
+  background-color: white;
+  border-radius: 25px;
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
 }
 
 /*MODAL*/

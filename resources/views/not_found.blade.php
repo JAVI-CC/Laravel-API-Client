@@ -27,8 +27,8 @@
   <span class="text-not-found">{{ $error }}</span>
   <div style="margin-top: 10px;"></div>
   <img src="/offline.png" alt="offline" width="220px" >
-    <div style="margin-top: 10px;"></div>
-    <a href="/" class="link-not-found">VOLVER AL INICIO</a>
+    <div style="margin-top: 30px;"></div>
+    <a href="/" class="link-not-found">Volver al inicio</a>
   </div>
 
 </div>
