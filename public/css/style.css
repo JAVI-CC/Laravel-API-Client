@@ -308,6 +308,11 @@ i {
   text-decoration: none;
 }
 
+.link-not-found:hover {
+  color: white;
+  text-decoration: none;
+}
+
 /*MODAL*/
 .modal-header {
   background-color: rgb(37, 37, 37);
