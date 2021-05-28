@@ -53,6 +53,7 @@
 $ cd Laravel-API-Client
 $ cp .env.example .env
 $ docker-compose up -d
+$ docker-compose exec --user=root app chmod -R 777 /var/www/
 $ docker-compose exec app composer install
 $ docker-compose exec app php artisan key:generate</code>
 </pre>
