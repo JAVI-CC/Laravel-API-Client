@@ -50,7 +50,7 @@
 <h4>Setup:</h4>
 <pre>
 <code>$ git clone https://github.com/JAVI-CC/Laravel-API-Client.git
-$ cd Laravel-API-Client-master
+$ cd Laravel-API-Client
 $ cp .env.example .env
 $ docker-compose up -d
 $ docker-compose exec app composer install
