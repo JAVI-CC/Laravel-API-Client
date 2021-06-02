@@ -29,11 +29,11 @@
   <div class="card card-index">
     <div class="card-body">
       <h5 class="card-title">{{ $juego->nombre }}</h5>
-      <a href="/desarrolladora/{{$juego->desarrolladora->slug}}" class="text-desarrolladora-index">{{ $juego->desarrolladora->nombre }}</a>
+      <a href="/desarrolladora/{{$juego->desarrolladora->slug}}" class="text-desarrolladora-index" style="@if(isset($slug) && $slug == $juego->desarrolladora->slug) color: #ffc107!Important; @endif">{{ $juego->desarrolladora->nombre }}</a>
       <p class="card-text card-text-descipcion">{{ $juego->descripcion }}</p>
         @foreach($juego->generos as $genero)
           <div class="div-tags-generos-mobile">
-            <a href="/genero/{{ $genero->slug }}" class="tags-generos">{{ $genero->nombre }}</a>
+            <a href="/genero/{{ $genero->slug }}" class="tags-generos" style="@if(isset($slug) && $slug == $genero->slug) background-color: #ffc107!Important; @endif">{{ $genero->nombre }}</a>
           </div>
         @endforeach
     </div>
@@ -75,6 +75,7 @@
             <input type="hidden" class="modal-juego-fecha" value="{{ $juego->fecha }}">
             <input type="hidden" class="modal-juego-descripcion" value="{{ $juego->descripcion }}">
             <input type="hidden" class="modal-juego-slug" value="{{ $juego->slug }}">
+            <input type="hidden" class="modal-juego-genero-slug-seleccionado" value="@if(isset($slug)){{$slug}}@endif">
             @foreach($juego->generos as $genero)
               <input type="hidden" class="modal-juego-genero" name="genero[]" value="{{ $genero->nombre }}">
               <input type="hidden" class="modal-juego-genero-slug" name="genero-slug[]" value="{{ $genero->slug }}">
@@ -99,7 +100,7 @@
           </button>
         </div>
         <div class="modal-header modal-header-subtitulo">
-          <a class="modal-title text-desarrolladora-index JuegoModalDesarrolladora">desarrolladora</a>
+          <a class="modal-title text-desarrolladora-index JuegoModalDesarrolladora" style="@if(isset($slug) && $slug == $juego->desarrolladora->slug) color: #ffc107!Important; @endif">desarrolladora</a>
         </div>
         <div class="modal-body modal-body-content">
           <span class="modal-fecha JuegoModalFecha">fecha</span>

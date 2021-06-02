@@ -28,6 +28,7 @@ $(document).ready(function () {
         for (var i = 0; i < inputs.length; i++) {
           generos.push(inputs[i].value);
         }
+        var genero_slug_seleccionado = $(this).children(".modal-juego-genero-slug-seleccionado").val();
         var generos_slugs = [],
         inputs = $(this).children('input[type="hidden"].modal-juego-genero-slug');
         for (var i = 0; i < inputs.length; i++) {
@@ -46,7 +47,11 @@ $(document).ready(function () {
         $('.modal-button-danger').attr('onclick', 'return confirm('+frase+')');
         $(".JuegoModalGeneros").empty();
         for (var i = 0; i < generos.length; i++) {
-          $(".JuegoModalGeneros").append("<a href='/genero/"+generos_slugs[i]+"' class='tags-generos'>"+generos[i]+'</a>');
+          var class_seleccionado = '';
+          if(genero_slug_seleccionado == generos_slugs[i]){
+            class_seleccionado = 'background-color: #ffc107!Important';
+          }
+          $(".JuegoModalGeneros").append("<a href='/genero/"+generos_slugs[i]+"' class='tags-generos' style='"+class_seleccionado+"'>"+generos[i]+'</a>');
         }
         $(".JuegoModalFecha").text(fecha);
         $(".modal-button-warning").attr("href", "/juegos/" + slug);

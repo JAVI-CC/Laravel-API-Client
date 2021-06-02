@@ -72,7 +72,7 @@ class JuegoController extends Controller
           return view('not_found', compact('error'));
         } else { 
           $juegos = $this->juego->paginate($juegos, 100);
-          return view('index', compact('juegos'));
+          return view('index', compact('juegos', 'slug'));
         }
     }
 
@@ -88,7 +88,7 @@ class JuegoController extends Controller
           return view('not_found', compact('error'));
         } else { 
           $juegos = $this->juego->paginate($juegos, 100);
-          return view('index', compact('juegos'));
+          return view('index', compact('juegos', 'slug'));
         }
     }
 
