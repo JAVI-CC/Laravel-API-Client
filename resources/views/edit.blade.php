@@ -122,7 +122,7 @@
   <input type="hidden" name="slug" value="@isset($juego->slug){{$juego->slug}}@endisset @isset($values['slug']){{$values['slug']}}@endisset">
 
   <button type="submit" class="btn btn-warning" style="color: white;">Actualizar</button>
-  <div style="margin-bottom: 120px;"></div>
+  <div style="margin-bottom: 145px;"></div>
 </form>
 
 @endsection
