@@ -63,61 +63,13 @@ class Juego extends Model
         return $generos_slug;
     }
 
-    protected function process_generos($generos)
-    {
-        if($generos == null){
-            return null;
-        }
-
-        $generos_slug = array();
-        foreach($generos as $genero) {
-          array_push($generos_slug, Str::slug($genero));
-        }
-
-        $output = [];
-
-        foreach($generos_slug as $genero){
-          if(!is_array($genero)){
-            $output[] = ['name' => 'generos[]', 'contents' => $genero];
-            continue;
-          }
-
-          foreach($genero as $multiValue){
-            $multiName = 'generos[]' . '' . (is_array($multiValue) ? '[' . key($multiValue) . ']' : '' ) . '';
-            $output[] = ['name' => $multiName, 'contents' => (is_array($multiValue) ? reset($multiValue) : $multiValue)];
-          }
-        }
-
-        return $output;
-
-    }
-
-    public function encapsular_data($generos, $request){
-        $generos[] = ['name' => 'nombre', 'contents' => $request->input('nombre')];
-        $generos[] = ['name' => 'desarrolladora', 'contents' => $request->input('desarrolladora')];
-        $generos[] = ['name' => 'descripcion', 'contents' => $request->input('descripcion')];
-        $generos[] = ['name' => 'fecha', 'contents' => $request->input('fecha')];
-
-        if($request->input('slug') != null){
-          $generos[] = ['name' => 'slug', 'contents' => $request->input('slug')];
-        }
-
-        $filename = $this->upload_image($request->file('imagen'));
-        if($filename == null){
-          $generos[] = ['name' => 'imagen', 'contents' => ''];
-        } else {
-          $generos[] = ['name' => 'imagen', 'contents' => fopen(storage_path('/'.$filename), 'r')];  
-        }
-
-        return $generos;
-    }
-
     protected function upload_image($imagen){
         if($imagen == null) return null;
-        
-        $filename = "background." .$imagen->getClientOriginalExtension();
+        $extension = $imagen->getClientOriginalExtension();
+        $filename = "background." .$extension;
         $imagen->move(storage_path('/'), $filename);
-        return $filename;
+        $base64 = 'data:image/' . $extension . ';base64,' . base64_encode(file_get_contents(storage_path($filename)));
+        return $base64;
     }
 
     protected function delete_image(){
@@ -127,12 +79,16 @@ class Juego extends Model
     public function apiupdate($request) {
 
         if($request->exists('imagen') == true) {
-            $update = $this->apiupdatewithimage($request);
-            return $update;
+            $imagen = $this->upload_image($request->file('imagen'));    
+            $this->delete_image();
         } else { 
-            $update = $this->apiupdatewithoutimage($request);
-            return $update;
+            $imagen = "";
         }
+        
+        $token = $this->getCookieToken();
+        $generos = $this->sluggable_generos($request->input('generos'));
+        $response = $this->client->request('POST', '/api/juegos/edit', [ 'headers' => ['Authorization' => $token], 'form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'), 'generos' => $generos, 'slug' => $request->input('slug'), 'imagen' => $imagen]]);
+        return json_decode($response->getBody()->getContents());
        
     }
 
@@ -168,31 +124,10 @@ class Juego extends Model
 
     public function apiadd($request)
     {
-        $generos = $this->process_generos($request->input('generos'));
-        $data = $this->encapsular_data($generos, $request);
-        //$filename = $this->upload_image($request->file('imagen'));
-        $token = $this->getCookieToken();
-        $response = $this->client->request('POST', '/api/juegos', [ 'headers' => ['Authorization' => $token], 'multipart' => $data]);
-
-        $this->delete_image();
-        return json_decode($response->getBody()->getContents());
-    }
-
-    public function apiupdatewithoutimage($request)
-    {
+        $imagen = $this->upload_image($request->file('imagen'));     
         $token = $this->getCookieToken();
         $generos = $this->sluggable_generos($request->input('generos'));
-        $response = $this->client->request('PUT', '/api/juegos/edit', ['headers' => ['Authorization' => $token], 'form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'), 'generos' => $generos, 'slug' => $request->input('slug')]]);
-        return json_decode($response->getBody()->getContents());
-    }
-
-    public function apiupdatewithimage($request)
-    {
-        $generos = $this->process_generos($request->input('generos'));
-        $data = $this->encapsular_data($generos, $request);
-        //$filename = $this->upload_image($request->file('imagen'));
-        $token = $this->getCookieToken();
-        $response = $this->client->request('POST', '/api/juegos/edit', [ 'headers' => ['Authorization' => $token], 'multipart' => $data]);  
+        $response = $this->client->request('POST', '/api/juegos', [ 'headers' => ['Authorization' => $token], 'form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'), 'generos' => $generos, 'imagen' => $imagen]]);
 
         $this->delete_image();
         return json_decode($response->getBody()->getContents());

@@ -44,7 +44,7 @@
   </div>
   <div class="form-group" style="margin-top: 15px;">
     <label class="input-title">Descripción:</label>
-    <textarea class="form-control input-descripcion" name="descripcion" rows="3" placeholder="Descripción..." maxlength="255" style="@isset($error->descripcion['0']) border-color: red; @endisset">@isset($values['descripcion']){{$values['descripcion']}}@endisset</textarea>
+    <textarea class="form-control input-descripcion" name="descripcion" rows="3" placeholder="Descripción..." maxlength="800" style="@isset($error->descripcion['0']) border-color: red; @endisset">@isset($values['descripcion']){{$values['descripcion']}}@endisset</textarea>
     <div style="margin-top: 5px;"></div>
     <small style="color: red;">@isset($error->descripcion['0']) {{ $error->descripcion['0'] }} @endisset</small>
   </div>
