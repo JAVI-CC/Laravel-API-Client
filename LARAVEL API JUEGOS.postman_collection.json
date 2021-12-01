@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c23c3cf8-8844-4b36-9f3d-bbae4e8cee74",
-		"name": "LARAVEL API JUEGOS",
+		"_postman_id": "a7bb19b9-6efa-4302-bdef-4ec4fba92e63",
+		"name": "LARAVEL JUEGOS API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -29,10 +29,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/auth/login",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/login",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -61,10 +61,10 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/auth/logout",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/logout",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -96,10 +96,10 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/auth/userinfo",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/userinfo",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -143,10 +143,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/auth/register",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/register",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -154,6 +154,52 @@
 								"api",
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Introduzca el token!!!",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/check",
+							"protocol": "https",
+							"host": [
+								"laraveljuegosapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"check"
 							]
 						}
 					},
@@ -168,15 +214,15 @@
 					"name": "Desarrolladora",
 					"item": [
 						{
-							"name": "Get Juegos desarrolladora",
+							"name": "Get Juegos desarrolladoras",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/desarrolladoras/from-software",
+									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/desarrolladoras/from-software",
 									"protocol": "https",
 									"host": [
-										"laravelapijuegos",
+										"laraveljuegosapi",
 										"herokuapp",
 										"com"
 									],
@@ -185,6 +231,103 @@
 										"juegos",
 										"desarrolladoras",
 										"from-software"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all desarrolladora",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/desarrolladoras/show/all",
+									"protocol": "https",
+									"host": [
+										"laraveljuegosapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"juegos",
+										"desarrolladoras",
+										"show",
+										"all"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Generos",
+					"item": [
+						{
+							"name": "Get all generos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/generos/show/all",
+									"protocol": "https",
+									"host": [
+										"laraveljuegosapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"juegos",
+										"generos",
+										"show",
+										"all"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get juegos generos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/generos/carreras",
+									"protocol": "https",
+									"host": [
+										"laraveljuegosapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"juegos",
+										"generos",
+										"carreras"
 									],
 									"query": [
 										{
@@ -248,8 +391,8 @@
 								},
 								{
 									"key": "imagen",
-									"type": "file",
-									"src": []
+									"value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPj/HwADBwIAMCbHYQAAAABJRU5ErkJggg==",
+									"type": "text"
 								},
 								{
 									"key": "generos[]",
@@ -269,10 +412,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -293,10 +436,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/test123",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/test123",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -322,10 +465,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -358,10 +501,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/filter/search?search=dark&filter=fecha&order=ASC",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/filter/search?search=dark&filter=fecha&order=ASC",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -425,8 +568,8 @@
 								},
 								{
 									"key": "imagen",
-									"type": "file",
-									"src": []
+									"value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPj/HwADBwIAMCbHYQAAAABJRU5ErkJggg==",
+									"type": "text"
 								},
 								{
 									"key": "slug",
@@ -451,10 +594,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/edit",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/edit",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -475,68 +618,6 @@
 					"response": []
 				},
 				{
-					"name": "Edit game without image",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Introduzca el token!!!",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/edit?nombre=test123&descripcion=escribiendo...&desarrolladora=test123 Studios&fecha=2020-08-01&slug=test123&generos[]=rpg-de-accion&generos[]=plataformas&generos[]=cartas",
-							"protocol": "https",
-							"host": [
-								"laravelapijuegos",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"api",
-								"juegos",
-								"edit"
-							],
-							"query": [
-								{
-									"key": "nombre",
-									"value": "test123"
-								},
-								{
-									"key": "descripcion",
-									"value": "escribiendo..."
-								},
-								{
-									"key": "desarrolladora",
-									"value": "test123 Studios"
-								},
-								{
-									"key": "fecha",
-									"value": "2020-08-01"
-								},
-								{
-									"key": "slug",
-									"value": "test123"
-								},
-								{
-									"key": "generos[]",
-									"value": "rpg-de-accion"
-								},
-								{
-									"key": "generos[]",
-									"value": "plataformas"
-								},
-								{
-									"key": "generos[]",
-									"value": "cartas"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete game",
 					"request": {
 						"method": "DELETE",
@@ -548,10 +629,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/delete/test123",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/delete/test123",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
@@ -564,37 +645,37 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Generos",
-			"item": [
+				},
 				{
-					"name": "Get all generos",
+					"name": "Get games pagination",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/show/all",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/paginate?page=2&items=8&order",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"api",
 								"juegos",
-								"generos",
-								"show",
-								"all"
+								"paginate"
 							],
 							"query": [
 								{
-									"key": "",
-									"value": "",
-									"disabled": true
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "items",
+									"value": "8"
+								},
+								{
+									"key": "order",
+									"value": null
 								}
 							]
 						}
@@ -602,29 +683,27 @@
 					"response": []
 				},
 				{
-					"name": "Get juegos generos",
+					"name": "Get games random",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/carreras",
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/random?items=12",
 							"protocol": "https",
 							"host": [
-								"laravelapijuegos",
+								"laraveljuegosapi",
 								"herokuapp",
 								"com"
 							],
 							"path": [
 								"api",
 								"juegos",
-								"generos",
-								"carreras"
+								"random"
 							],
 							"query": [
 								{
-									"key": "",
-									"value": "",
-									"disabled": true
+									"key": "items",
+									"value": "12"
 								}
 							]
 						}

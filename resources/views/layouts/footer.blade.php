@@ -7,7 +7,7 @@
 
   <!-- Copyright -->
   <div class="footer footer-copyright text-center py-3">© 2020 Copyright:
-    <a target="_blank" href="https://laravelapijuegos.herokuapp.com/api/juegos">Laravel API Juegos</a>
+    <a target="_blank" href="https://laraveljuegosapi.herokuapp.com/api/juegos">Laravel API Juegos</a>
   </div>
   <!-- Copyright -->
 

@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-<p>Laravel 8 and PHP 8 application web responsive that contains interface web, user registers and the application connected to a Laravel API <a href="https://laravelapijuegos.herokuapp.com/api/juegos" target="_blank"> https://laravelapijuegos.herokuapp.com</a></p>
+<p>Laravel 8 and PHP 8 application web responsive that contains interface web, user registers and the application connected to a Laravel API <a href="https://laraveljuegosapi.herokuapp.com/api/juegos" target="_blank"> https://laraveljuegosapi.herokuapp.com</a></p>
 
 <p>Project Laravel Api Server: <a href="https://github.com/JAVI-CC/Laravel-API-Server" target="_blank">https://github.com/JAVI-CC/Laravel-API-Server</a></p>
 
@@ -15,7 +15,7 @@
 <pre><code>$ composer install && php artisan key:generate</code></pre>
 
 <h2>.env</h2>
-<p><strong>API_SERVER= </strong>https://laravelapijuegos.herokuapp.com</p>
+<p><strong>API_SERVER= </strong>https://laraveljuegosapi.herokuapp.com</p>
 
 <h2>Demo</h2>
 <a href="http://laravelclienteapi.herokuapp.com" target="_blank">http://laravelclienteapi.herokuapp.com</a><br>
