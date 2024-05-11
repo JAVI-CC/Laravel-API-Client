@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-<p>Laravel 8 and PHP 8 application web responsive that contains interface web, user registers and the application connected to a Laravel API <a href="https://laravel-api-server.up.railway.app/api/juegos" target="_blank"> https://laravel-api-server.up.railway.app</a></p>
+<p>Laravel 8 and PHP 8 application web responsive that contains interface web, user registers and the application connected to a Laravel API</p>
 
 <p>Project Laravel Api Server: <a href="https://github.com/JAVI-CC/Laravel-API-Server" target="_blank">https://github.com/JAVI-CC/Laravel-API-Server</a></p>
 
@@ -15,10 +15,10 @@
 <pre><code>$ composer install && php artisan key:generate</code></pre>
 
 <h2>.env</h2>
-<p><strong>API_SERVER= </strong>https://laravel-api-server.up.railway.app</p>
+<p><strong>API_SERVER= </strong>http://localhost</p>
 
 <h2>Demo</h2>
-<a href="https://laravel-api-server.up.railway.app" target="_blank">https://laravel-api-server.up.railway.app</a><br>
+<a href="http://localhost:8000" target="_blank">http://localhost</a><br>
 <span>User: admin@email.com</span><br>
 <span>Password: 12345678</span>
 
