@@ -39,7 +39,7 @@
 
 <h4>Containers:</h4>
 <ul>
-<li><span>nginx:alpine</span> - <code>:8000->80/tcp</code></li>
+<li><span>nginx:alpine</span> - <code>:8001->80/tcp</code></li>
 <li><span>php:8.0.6-fpm</span> - <code>:9000</code></li>
 </ul>
 
@@ -53,9 +53,7 @@
 $ cd Laravel-API-Client
 $ cp .env.example .env
 $ docker-compose up -d
-$ docker-compose exec --user=root app chmod -R 777 /var/www/
-$ docker-compose exec app composer install
 $ docker-compose exec app php artisan key:generate</code>
 </pre>
 
-<span>Once you have the containers deployed, you can access the API at </span> <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
+<span>Once you have the containers deployed, you can access the API at </span> <a href="http://localhost:8001" target="_blank">http://localhost:8001</a>
